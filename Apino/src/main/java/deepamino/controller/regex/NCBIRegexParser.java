@@ -12,21 +12,51 @@ public class NCBIRegexParser implements RegexParser<BiObject> {
         String seqId = args[0];
         String content = args[1];
 
-        String locus = RegexUtils.getFirstRegex("(?i)LOCUS(.+)", content);
-        String definition = RegexUtils.getFirstRegex("(?i)DEFINITION(.+)", content);
-        String dbSource = RegexUtils.getFirstRegex("(?i)DBSOURCE(.+)", content);
-        String source = RegexUtils.getFirstRegex("(?i)SOURCE(.+)", content);
-        String organism = RegexUtils.getFirstRegex("(?i)ORGANISM\\s+(.+(?:\\n\\s+.+)*)", content);
-        String comment = RegexUtils.getFirstRegex("(?i)COMMENT\\s+(.+(?:\\n\\s+.+)*)", content);
-        String gene = RegexUtils.getFirstRegex("(?i)/gene=\"(.+)\"", content);
-        String geneSynonyms = RegexUtils.getFirstRegex("(?i)/gene_synonym=\"(.+)", content);
-
-        List<Article> articles = getArticles(seqId, content);
-
-        return new BiObject(seqId, locus, definition, dbSource, source, organism, comment, gene, geneSynonyms, articles);
+        return new BiObject(seqId,
+                locus(content),
+                definition(content),
+                dbsource(content),
+                source(content),
+                organism(content),
+                comment(content),
+                gene(content),
+                geneSynonym(content),
+                articles(content));
     }
 
-    private List<Article> getArticles(String seqId, String content) {
+    private String geneSynonym(String content) {
+        return RegexUtils.getFirstRegex("(?i)/gene_synonym=\"(.+)", content);
+    }
+
+    private String gene(String content) {
+        return RegexUtils.getFirstRegex("(?i)/gene=\"(.+)\"", content);
+    }
+
+    private String comment(String content) {
+        return RegexUtils.getFirstRegex("(?i)COMMENT\\s+(.+(?:\\n\\s+.+)*)", content);
+    }
+
+    private String organism(String content) {
+        return RegexUtils.getFirstRegex("(?i)ORGANISM\\s+(.+(?:\\n\\s+.+)*)", content);
+    }
+
+    private String source(String content) {
+        return RegexUtils.getFirstRegex("(?i)SOURCE(.+)", content);
+    }
+
+    private String dbsource(String content) {
+        return RegexUtils.getFirstRegex("(?i)DBSOURCE(.+)", content);
+    }
+
+    private String definition(String content) {
+        return RegexUtils.getFirstRegex("(?i)DEFINITION(.+)", content);
+    }
+
+    private String locus(String content) {
+        return RegexUtils.getFirstRegex("(?i)LOCUS(.+)", content);
+    }
+
+    private List<Article> articles(String content) {
         List<String> authors = RegexUtils.getRegex("(?i)AUTHORS(.+)", content);
         List<String> title = RegexUtils.getRegex("(?i)TITLE(.+(?:\\n\\s+.+)*)JOURNAL", content);
         List<String> journal = RegexUtils.getRegex("(?i)JOURNAL(.+)", content);
