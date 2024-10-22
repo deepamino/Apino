@@ -1,0 +1,68 @@
+LOCUS       NC_056737         2000000000 bp    DNA     linear   CON 20-OCT-2021
+DEFINITION  Protopterus annectens isolate FY-2018-M chromosome 6.part0, PAN1.0,
+            whole genome shotgun sequence.
+ACCESSION   NC_056737
+VERSION     NC_056737.1
+DBLINK      BioProject: PRJNA754246
+            BioSample: SAMN17890435
+            Assembly: GCF_019279795.1
+KEYWORDS    WGS; RefSeq.
+SOURCE      Protopterus annectens (West African lungfish)
+  ORGANISM  Protopterus annectens
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Dipnomorpha; Ceratodontiformes; Lepidosirenoidei; Protopteridae;
+            Protopterus.
+REFERENCE   1  (bases 1 to 2000000000)
+  AUTHORS   Wang,K., Wang,J., Zhu,C., Yang,L., Ren,Y., Ruan,J., Fan,G., Hu,J.,
+            Xu,W., Bi,X., Zhu,Y., Song,Y., Chen,H., Ma,T., Zhao,R., Jiang,H.,
+            Zhang,B., Feng,C., Yuan,Y., Gan,X., Li,Y., Zeng,H., Liu,Q.,
+            Zhang,Y., Shao,F., Hao,S., Zhang,H., Xu,X., Liu,X., Wang,D.,
+            Zhu,M., Zhang,G., Zhao,W., Qiu,Q., He,S. and Wang,W.
+  TITLE     African lungfish genome sheds light on the vertebrate water-to-land
+            transition
+  JOURNAL   Cell 184 (5), 1362-1376 (2021)
+   PUBMED   33545087
+COMMENT     REFSEQ INFORMATION: The reference sequence is identical to
+            CM033085.1.
+            Assembly name: PAN1.0
+            The genomic sequence for this RefSeq record is from the
+            whole-genome assembly released by the Northwestern Polytechnical
+            University on 2021/07/20. The original whole-genome shotgun project
+            has the accession JAGYFI000000000.1.
+            
+            ##Genome-Assembly-Data-START##
+            Assembly Provider      :: Northwestern Polytechnical University
+            Assembly Method        :: wtdbg v. huge
+            Assembly Name          :: PAN1.0
+            Genome Representation  :: Full
+            Expected Final Version :: Yes
+            Genome Coverage        :: 50.0x
+            Sequencing Technology  :: Oxford Nanopore
+            ##Genome-Assembly-Data-END##
+            
+            ##Genome-Annotation-Data-START##
+            Annotation Provider         :: NCBI
+            Annotation Status           :: Full annotation
+            Annotation Name             :: Protopterus annectens Annotation
+                                           Release 100
+            Annotation Version          :: 100
+            Annotation Pipeline         :: NCBI eukaryotic genome annotation
+                                           pipeline
+            Annotation Software Version :: 9.0
+            Annotation Method           :: Best-placed RefSeq; Gnomon
+            Features Annotated          :: Gene; mRNA; CDS; ncRNA
+            ##Genome-Annotation-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..2000000000
+                     /organism="Protopterus annectens"
+                     /mol_type="genomic DNA"
+                     /isolate="FY-2018-M"
+                     /isolation_source="ornamental fish market"
+                     /db_xref="taxon:7888"
+                     /chromosome="6.part0"
+                     /sex="male"
+                     /tissue_type="muscle"
+                     /geo_loc_name="China: Guangzhou"
+CONTIG      join(NW_025048842.1:1..2000000000)
+//
+
