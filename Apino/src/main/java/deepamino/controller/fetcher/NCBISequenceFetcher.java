@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NCBISequenceFetcher implements DataFetcher {
+public class NCBISequenceFetcher implements DataFetcher<BiObject> {
     final String apiURL =  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
     public BiObject fetch(String seqId) {
