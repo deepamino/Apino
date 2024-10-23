@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GeneScrapper implements Scrapper {
     final String nucCoreURL = "https://www.ncbi.nlm.nih.gov/nuccore/";
+    final String query = "?report=fasta";
 
     @Override
     public String getFromFasta(ProcessedFastaFile fasta) throws IOException {
@@ -26,11 +27,15 @@ public class GeneScrapper implements Scrapper {
     }
 
     private BiObject getScrapping(String seqId) throws IOException {
-        Document doc = Jsoup.connect(nucCoreURL + seqId).get();
-        Elements preElements = doc.select("pre.genbank");
+        Document doc = Jsoup.connect(getUrl(seqId)).get();
+        Elements preElements = doc.select("pre");
         Element infoExtract = preElements.get(0);
 
         System.out.println(infoExtract.text());
         return null;
+    }
+
+    private String getUrl(String seqId) {
+        return nucCoreURL + seqId + query;
     }
 }

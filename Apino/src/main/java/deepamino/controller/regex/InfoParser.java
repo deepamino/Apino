@@ -6,7 +6,7 @@ import deepamino.model.BiObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NCBIRegexParser implements RegexParser<BiObject> {
+public class InfoParser implements RegexParser<BiObject> {
     @Override
     public BiObject parse(String[] args) {
         String seqId = args[0];

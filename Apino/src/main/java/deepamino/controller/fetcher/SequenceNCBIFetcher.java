@@ -1,21 +1,20 @@
 package deepamino.controller.fetcher;
 
-import deepamino.controller.regex.NCBIRegexParser;
-import deepamino.controller.regex.RegexParser;
 import deepamino.controller.files.handler.LocalFileHandler;
-import deepamino.model.BiObject;
+import deepamino.controller.regex.FastaParser;
+import deepamino.controller.regex.RegexParser;
+import deepamino.model.fasta.ProcessedFastaFile;
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NCBISequenceFetcher implements DataFetcher<BiObject> {
+public class SequenceNCBIFetcher implements DataFetcher<ProcessedFastaFile> {
     final String apiURL =  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
-    public BiObject fetch(String seqId) {
+    public ProcessedFastaFile fetch(String seqId) {
         try {
             return retrieveData(seqId);
 
@@ -27,11 +26,11 @@ public class NCBISequenceFetcher implements DataFetcher<BiObject> {
         return null;
     }
 
-    private BiObject retrieveData(String seqId) throws IOException {
+    private ProcessedFastaFile retrieveData(String seqId) throws IOException {
         String content = getUrlContent(seqId);
         new LocalFileHandler().save(seqId + ".text", content.toString());
 
-        RegexParser<BiObject> parser = new NCBIRegexParser();
+        RegexParser<ProcessedFastaFile> parser = new FastaParser();
         return parser.parse(new String[]{seqId, content.toString()});
     }
 
@@ -59,7 +58,7 @@ public class NCBISequenceFetcher implements DataFetcher<BiObject> {
         String fetchURL = apiURL
                 + "?db=" + db
                 + "&id=" + seqId
-                + "&rettype=gb"
+                + "&rettype=fasta"
                 + "&retmode=text";
 
         return fetchURL;
