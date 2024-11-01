@@ -33,7 +33,13 @@ public class InfoParser implements RegexParser<BiObject> {
     }
 
     private String comment(String content) {
-        return RegexUtils.getFirstRegex("(?i)COMMENT\\s+(.+(?:\\n\\s+.+)*)", content);
+        String comment = RegexUtils.
+                getFirstRegex("(?i)COMMENT\\s+(.+(?:\\n\\s+.+)*)", content);
+
+        if (comment != null)
+            return comment.replace("##", "");
+
+        return null;
     }
 
     private String organism(String content) {
